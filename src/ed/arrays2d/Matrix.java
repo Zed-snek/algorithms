@@ -3,14 +3,9 @@ package ed.arrays2d;
 public class Matrix {
 /*
     Matrix Challenge
-Have the function MatrixChallenge(strArr) take the strArr parameter being passed which will be a 2D matrix
-of 0 and 1's of some arbitrary size, and determine if a path of 1's exists from the top-left of the matrix to
-the bottom-right of the matrix while moving only in the directions: up, down, left, and right.
-If a path exists your program should return the string true, otherwise your program should return the number of
-locations in the matrix where if a single 0 is replaced with a 1, a path of 1's will be created successfully.
-If a path does not exist and you cannot create a path by changing a single location in the matrix from a 0 to a 1,
-then your program should return the string not possible. For example: if strArr is ["10100", "10111", "11111", "10010"]
-then this looks like the following matrix:
+Have the function MatrixChallenge(strArr) take the strArr parameter being passed which will be a 2D matrix of 0 and 1's,
+and determine the area of the largest rectangular submatrix that contains all 1's. For example: if strArr is
+["10100", "10111", "11111", "10010"] then this looks like the following matrix:
 
     1 0 1 0 0
     1 0 1 1 1
