@@ -2,6 +2,7 @@ package ed.arrays;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /* https://leetcode.com/problems/top-k-frequent-elements
@@ -22,30 +23,25 @@ Output: [1]
 public class topKFrequent {
 
     public int[] solution(int[] nums, int k) {
-
-        int[][] result = new int[2][k];
-
         Map<Integer, Long> map = Arrays.stream(nums)
                 .boxed()
                 .collect(Collectors.groupingBy(num -> num, Collectors.counting()));
 
-        int min;
-        int minId;
-        for (int key : map.keySet()) {
-            int value = Math.toIntExact(map.get(key));
-            min = result[1][0];
-            minId = 0;
-            for (int i = 0; i < k; i++) {
-                if (result[1][i] < min) {
-                    min = result[1][i];
-                    minId = i;
-                }
-            }
-            if (min < value) {
-                result[0][minId] = key;
-                result[1][minId] = value;
-            }
+        TreeMap<Integer, Long> tree = new TreeMap<>((k1, k2) -> {
+            int compare = Long.compare(map.get(k2), map.get(k1));
+            if (compare == 0)
+                return k1.compareTo(k2);
+            return compare;
+        });
+        tree.putAll(map);
+
+        int[] result = new int[k];
+        int it = 0;
+        var iterator = tree.keySet().iterator();
+        while (iterator.hasNext() && it < k) {
+            result[it] = iterator.next();
+            it++;
         }
-        return result[0];
+        return result;
     }
 }
