@@ -20,7 +20,7 @@ Output: [1]
 */
 
 
-public class topKFrequent {
+public class TopKFrequent {
 
     public int[] solution(int[] nums, int k) {
         Map<Integer, Long> map = Arrays.stream(nums)
